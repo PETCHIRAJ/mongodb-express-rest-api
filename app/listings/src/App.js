@@ -23,9 +23,9 @@ class App extends Component {
     });
 
     if (direction === 'left') {
-      await axios.delete(`http://localhost:5000/listings/delete/${listingId}`);
+      await axios.delete(`http://localhost:5001/listings/delete/${listingId}`);
     } else {
-      await axios.post('http://localhost:5000/listings/recordSwipe', {
+      await axios.post('http://localhost:5001/listings/recordSwipe', {
         id: listingId,
         session_id: sessionId,
         direction,
@@ -38,7 +38,7 @@ class App extends Component {
       liked: !this.state.liked,
     });
 
-    await axios.post('http://localhost:5000/listings/updateLike', {
+    await axios.post('http://localhost:5001/listings/updateLike', {
       id: listingId,
     });
   }
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    const response = await axios.get(`http://localhost:5000/listings`);
+    const response = await axios.get(`http://localhost:5001/listings`);
     const json = await response.data;
     this.setState({ data: json });
   }
